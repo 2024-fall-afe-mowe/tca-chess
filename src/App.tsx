@@ -6,22 +6,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
-const Home = () => {
-  return (
-    <div>
-      <h1
-      className='text-xl'
-      >
-        Home 
-      </h1>
-    </div>
-  );
-};
-
+import { Home } from './Home';
 const router = createHashRouter([
   {
     path: "/",
-    element: <Home/>,
+    element: <Home />,
   },
   {
     path: "/setup",
@@ -38,13 +27,9 @@ const router = createHashRouter([
 function App() {
   return (
     <div className="App">
-      <RouterProvider 
-      router={router}
+      <RouterProvider
+        router={router}
       />
-      <h1 className="text-3xl font-bold underline">
-        Chess
-      </h1>
-      <button className="btn btn-primary">Play</button>
     </div>
   );
 }
