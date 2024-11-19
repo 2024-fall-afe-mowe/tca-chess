@@ -64,6 +64,11 @@ const App = () => {
   const [numberOfGames, setNumberOfGames] = useState(15);
 
 
+  const addNewGameResult = (newResult: GameResult) => setGameResults([
+    ...gameResults,
+    newResult
+  ]);
+
   const [gameResults, setGameResults] = useState(dummyGameResults);
   // const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
@@ -84,10 +89,10 @@ const App = () => {
       element: <Play
         numberOfGames={numberOfGames}
         setNumberOfGames={setNumberOfGames}
+        addNewGameResult={addNewGameResult}
       />,
     },
   ]);
-
 
   return (
     <div className="App">
