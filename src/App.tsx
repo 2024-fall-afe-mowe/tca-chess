@@ -9,50 +9,53 @@ import {
 import { Home } from './Home';
 import { Setup } from './Setup';
 import { Play } from './Play';
-import{ GameResult } from './game-results';
+import { 
+  GameResult
+  , getLeaderboard
+ } from './game-results';
 
 const dummyGameResults: GameResult[] = [
   {
-      startTime: "2024-09-23T15:36:25.123Z"
-      , endTime: "2024-09-23T15:46:25.123Z"
-      , winner: "Chris B"
-      , player: [
-          "Chris B"
-          , "Caden J"
-          , "Peter B"
-          , "Swastik A"
-          , "Tom"
-      ]
+    startTime: "2024-09-23T15:36:25.123Z"
+    , endTime: "2024-09-23T15:46:25.123Z"
+    , winner: "Chris B"
+    , player: [
+      "Chris B"
+      , "Caden J"
+      , "Peter B"
+      , "Swastik A"
+      , "Tom"
+    ]
   }
   , {
-      startTime: "2024-09-23T15:48:25.123Z"
-      , endTime: "2024-09-23T15:50:25.123Z"
-      , winner: "Tom"
-      , player: [
-          "Harry"
-          , "Hermione"
-          , "Ron"
-          , "Tom"
-      ]    
+    startTime: "2024-09-23T15:48:25.123Z"
+    , endTime: "2024-09-23T15:50:25.123Z"
+    , winner: "Tom"
+    , player: [
+      "Harry"
+      , "Hermione"
+      , "Ron"
+      , "Tom"
+    ]
   }
   , {
-      startTime: ""
-      , endTime: ""
-      , winner: "Harry"
-      , player: [
-          "Harry"
-          , "Chris B"
-          , "Tom"
-      ]
+    startTime: ""
+    , endTime: ""
+    , winner: "Harry"
+    , player: [
+      "Harry"
+      , "Chris B"
+      , "Tom"
+    ]
   }
   , {
-      startTime: ""
-      , endTime: ""
-      , winner: "Tom"
-      , player: [
-          "Tom"
-          , "Jack"
-      ]
+    startTime: ""
+    , endTime: ""
+    , winner: "Tom"
+    , player: [
+      "Tom"
+      , "Jack"
+    ]
   }
 ];
 
@@ -60,11 +63,16 @@ const App = () => {
 
   const [numberOfGames, setNumberOfGames] = useState(15);
 
+
+  const [gameResults, setGameResults] = useState(dummyGameResults);
+  // const [gameResults, setGameResults] = useState<GameResult[]>([]);
+
   const router = createHashRouter([
     {
       path: "/",
-      element: <Home 
-      numGames={numberOfGames}
+      element: <Home
+      leaderboardData={getLeaderboard(gameResults)}
+        numGames={numberOfGames}
       />,
     },
     {
@@ -74,14 +82,12 @@ const App = () => {
     {
       path: "/play",
       element: <Play
-      numberOfGames={numberOfGames}
-      setNumberOfGames={setNumberOfGames}
+        numberOfGames={numberOfGames}
+        setNumberOfGames={setNumberOfGames}
       />,
     },
   ]);
 
- const [gameResults, setGameResults] = useState(dummyGameResults);
-// const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
   return (
     <div className="App">

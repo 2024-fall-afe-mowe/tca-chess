@@ -1,11 +1,16 @@
 import { useNavigate } from "react-router-dom";
+import { LeaderboardEntry } from "./game-results";
 
 interface HomeProps {
     numGames: number;
+    leaderboardData: LeaderboardEntry[];
 }
 export const Home: React.FC<HomeProps> = ({
-    numGames: foo
+    numGames: foo,
+    leaderboardData
 }) => {
+
+console.log(leaderboardData);
 
 const nav = useNavigate();
 
