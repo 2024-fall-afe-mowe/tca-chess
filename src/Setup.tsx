@@ -15,12 +15,12 @@ export const Setup = () => {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center">
-            <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-                <h1 className='text-3xl font-bold mb-5 text-center'>
+        <div className="min-h-screen flex items-center justify-center bg-gray-900">
+            <div className="bg-gray-800 p-8 rounded-lg shadow-lg w-96">
+                <h1 className='text-4xl font-bold mb-6 text-center text-blue-400'>
                     Setup
                 </h1>
-                <div className="mb-4">
+                <div className="mb-6">
                     <input
                         type="text"
                         placeholder="Player 1 Name"
@@ -37,7 +37,7 @@ export const Setup = () => {
                         <option value="black" disabled={!!(player2Color === "black" && player2Name)}>Black</option>
                     </select>
                 </div>
-                <div className="mb-4">
+                <div className="mb-6">
                     <input
                         type="text"
                         placeholder="Player 2 Name"
@@ -55,7 +55,7 @@ export const Setup = () => {
                     </select>
                 </div>
                 <button
-                    className="btn btn-primary w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+                    className="btn btn-primary w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
                     onClick={handleStartGame}
                     disabled={!player1Name || !player2Name || player1Color === player2Color || player1Name === player2Name}
                 >
