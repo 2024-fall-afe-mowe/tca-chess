@@ -12,7 +12,7 @@ import { Play } from './Play';
 const router = createHashRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Home numGames={0} leaderboardData={[]} />,
   },
   {
     path: "/setup",
@@ -20,7 +20,7 @@ const router = createHashRouter([
   },
   {
     path: "/play",
-    element: <Play />,
+    element: <Play numberOfGames={0} setNumberOfGames={() => {}} addNewGameResult={() => {}} />,
   },
 ]);
 

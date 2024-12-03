@@ -1,5 +1,5 @@
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
-import { GameResult } from './GameResults';
+import { GameResult } from './game-results';
 
 export const saveGameToCloud = async (
   email: string

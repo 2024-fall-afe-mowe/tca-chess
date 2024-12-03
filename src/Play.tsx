@@ -1,6 +1,12 @@
 import { useNavigate } from "react-router-dom";
 
-export const Play = () => {
+interface PlayProps {
+  numberOfGames: number;
+  setNumberOfGames: (num: number) => void;
+  addNewGameResult: (result: any) => void;
+}
+
+export const Play: React.FC<PlayProps> = ({ numberOfGames, setNumberOfGames, addNewGameResult }) => {
     const nav = useNavigate();
 
     return (
