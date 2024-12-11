@@ -1,5 +1,4 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import {
   createHashRouter,
@@ -9,24 +8,51 @@ import {
 import { Home } from './Home';
 import { Setup } from './Setup';
 import { Play } from './Play';
-const router = createHashRouter([
-  {
-    path: "/",
-    element: <Home numGames={0} leaderboardData={[]} />,
-  },
-  {
-    path: "/setup",
-    element: <Setup />,
-  },
-  {
-    path: "/play",
-    element: <Play numberOfGames={0} setNumberOfGames={() => {}} addNewGameResult={() => {}} />,
-  },
-]);
-
-
+import { GameResult, getLeaderboard } from './game-results';
 
 const App = () => {
+  const [gameResults, setGameResults] = useState<GameResult[]>([]);
+  const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>([]);
+
+  // Load game results from localStorage on mount
+  useEffect(() => {
+    const storedResults = localStorage.getItem("gameResults");
+    if (storedResults) {
+      const parsedResults: GameResult[] = JSON.parse(storedResults);
+      setGameResults(parsedResults);
+      setLeaderboardData(getLeaderboard(parsedResults));
+    }
+  }, []);
+
+  // Update localStorage whenever gameResults change
+  useEffect(() => {
+    localStorage.setItem("gameResults", JSON.stringify(gameResults));
+    setLeaderboardData(getLeaderboard(gameResults));
+  }, [gameResults]);
+
+  const addNewGameResult = (result: GameResult) => {
+    setGameResults(prev => [...prev, result]);
+  };
+
+  const router = createHashRouter([
+    {
+      path: "/",
+      element: <Home numGames={gameResults.length} leaderboardData={leaderboardData} />,
+    },
+    {
+      path: "/setup",
+      element: <Setup />,
+    },
+    {
+      path: "/play",
+      element: <Play 
+                  numberOfGames={gameResults.length} 
+                  setNumberOfGames={() => {}} 
+                  addNewGameResult={addNewGameResult} 
+                />,
+    },
+  ]);
+
   return (
     <div className="App">
       <RouterProvider
