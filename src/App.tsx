@@ -8,7 +8,7 @@ import {
 import { Home } from './Home';
 import { Setup } from './Setup';
 import { Play } from './Play';
-import { GameResult, getLeaderboard } from './game-results';
+import { GameResult, LeaderboardEntry, getLeaderboard } from './game-results';
 
 const App = () => {
   const [gameResults, setGameResults] = useState<GameResult[]>([]);
